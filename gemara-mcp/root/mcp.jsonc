@@ -1,0 +1,36 @@
+{
+  // Gemara MCP Server — Artifact management via Model Context Protocol
+  // Container image: ghcr.io/gemaraproj/gemara-mcp (linux/amd64, linux/arm64)
+  // v0.4.0 digest: sha256:0d05c93d237c08483a2b046cff16b1765c42f3cfcba152b02b0904da7d8a05f0
+  //
+  // Modes:
+  //   artifact (default) — full mode: validate, migrate, and guided artifact creation
+  //   advisory           — read-only mode: validate existing artifacts only
+  //
+  // Container runtimes:
+  //   Pick ONE runtime section below (docker or podman) and remove the other.
+  //   Both are provided so the package works regardless of which runtime you use.
+  //
+  "mcpServers": {
+
+    // ── Docker ───────────────────────────────────────────────────────────
+    // Artifact mode (default) — all tools: validate, migrate, wizard prompts
+    "gemara-mcp": {
+      "command": "docker",
+      "args": [
+        "run", "--rm", "-i",
+        "ghcr.io/gemaraproj/gemara-mcp@sha256:0d05c93d237c08483a2b046cff16b1765c42f3cfcba152b02b0904da7d8a05f0",
+        "serve"
+      ]
+    },
+    // Advisory mode — read-only: validate tool only, no migration or prompts
+    "gemara-mcp-advisory": {
+      "command": "docker",
+      "args": [
+        "run", "--rm", "-i",
+        "ghcr.io/gemaraproj/gemara-mcp@sha256:0d05c93d237c08483a2b046cff16b1765c42f3cfcba152b02b0904da7d8a05f0",
+        "serve", "--mode", "advisory"
+      ]
+    }
+  }
+}

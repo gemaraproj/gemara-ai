@@ -1,0 +1,10 @@
+name: gemara-mcp
+version: 0.4.0
+description: MCP server for creating, validating, and migrating Gemara security artifacts using the Model Context Protocol
+keywords: [security, gemara, mcp, compliance, threat-modeling, controls, artifacts]
+author: gemaraproj
+license: Apache-2.0
+homepage: https://github.com/gemaraproj/gemara-mcp
+repository:
+  type: git
+  url: https://github.com/gemaraproj/gemara-mcp
