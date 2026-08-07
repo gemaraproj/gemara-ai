@@ -23,16 +23,6 @@ repository:
       affiliation: GitHub
       email: jmeridth@gmail.com
       primary: false
-    - name: Travis Truman
-      affiliation: Independent
-      email: trumant@gmail.com
-      primary: false
-    - name: Alex Speasmaker
-      affiliation: USAA
-      email: alex.speasmaker@gmail.com
-      primary: false
-  documentation:
-    contributing-guide: https://github.com/gemaraproj/gemara-ai/blob/main/README.md
   license:
     url: https://github.com/gemaraproj/gemara-ai?tab=Apache-2.0-1-ov-file#readme
     expression: Apache-2.0
@@ -57,27 +47,4 @@ repository:
         integration:
           adhoc: true
           ci: false
-          release: false
-      - name: CodeQL
-        type: SAST
-        version: "2.y.z"
-        rulesets:
-          - go
-          - actions
-        results:
-          adhoc:
-            name: Scheduled SAST Results
-            predicate-uri: https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/schemas/sarif-schema-2.1.0.json
-            location: https://github.com/gemaraproj/gemara-ai/security/code-scanning
-            comment: |
-              The results of the scheduled SAST scan are available in the Code Scanning tab of the Security Insights page and as an artifact on the scheduled job.
-          ci:
-            name: CI SAST Results
-            predicate-uri: https://docs.oasis-open.org/sarif/sarif/v2.1.0/cs01/schemas/sarif-schema-2.1.0.json
-            location: https://github.com/gemaraproj/gemara-ai/security/code-scanning
-            comment: |
-              The results of the CI SAST scan are available in the Code Scanning tab of the Security Insights page.
-        integration:
-          adhoc: true
-          ci: true
           release: false
