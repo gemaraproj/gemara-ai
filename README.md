@@ -63,13 +63,13 @@ cd gemara-ai
 With Podman:
 
 ```bash
-podman pull ghcr.io/gemaraproj/gemara-mcp@sha256:be39e5758f742145b6ee645257f444c72644b0a54dabea2a96ec27756ecad743
+podman pull ghcr.io/gemaraproj/gemara-mcp@sha256:b7575c9d230df8f074e3c939b38df17bd46db0f44cb01b308957206b4c97b6e3
 ```
 
 With Docker:
 
 ```bash
-docker pull ghcr.io/gemaraproj/gemara-mcp@sha256:be39e5758f742145b6ee645257f444c72644b0a54dabea2a96ec27756ecad743
+docker pull ghcr.io/gemaraproj/gemara-mcp@sha256:b7575c9d230df8f074e3c939b38df17bd46db0f44cb01b308957206b4c97b6e3
 ```
 
 Optionally, [verify the image signature](#verifying-the-container-image) with cosign before use.
@@ -112,10 +112,10 @@ The skill will scan the project for existing Gemara artifacts and guide you thro
 
 ## MCP Server
 
-The plugin bundles the [gemara-mcp](https://github.com/gemaraproj/gemara-mcp) server (v0.5.0) as a container image. The server provides:
+The plugin bundles the [gemara-mcp](https://github.com/gemaraproj/gemara-mcp) server (v0.6.0) as a container image. The server provides:
 
 - **Tools:** `validate_gemara_artifact`, `migrate_gemara_artifact`
-- **Resources:** `gemara://lexicon`, `gemara://schema/definitions`
+- **Resources:** `gemara://about`, `gemara://lexicon`, `gemara://schema/definitions`
 - **Prompts:** `threat_assessment`, `control_catalog`, `mapping_document`, `policy`, `risk_catalog`, `migration`
 
 ### Verifying the container image
@@ -124,7 +124,7 @@ The plugin bundles the [gemara-mcp](https://github.com/gemaraproj/gemara-mcp) se
 cosign verify \
   --certificate-identity-regexp="https://github.com/gemaraproj/gemara-mcp/.github/workflows/release.yml" \
   --certificate-oidc-issuer="https://token.actions.githubusercontent.com" \
-  ghcr.io/gemaraproj/gemara-mcp@sha256:be39e5758f742145b6ee645257f444c72644b0a54dabea2a96ec27756ecad743
+  ghcr.io/gemaraproj/gemara-mcp@sha256:b7575c9d230df8f074e3c939b38df17bd46db0f44cb01b308957206b4c97b6e3
 ```
 
 ## License

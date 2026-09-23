@@ -4,7 +4,7 @@
       "command": "podman",
       "args": [
         "run", "--rm", "-i",
-        "ghcr.io/gemaraproj/gemara-mcp@sha256:be39e5758f742145b6ee645257f444c72644b0a54dabea2a96ec27756ecad743",
+        "ghcr.io/gemaraproj/gemara-mcp@sha256:b7575c9d230df8f074e3c939b38df17bd46db0f44cb01b308957206b4c97b6e3",
         "serve"
       ]
     },
@@ -12,7 +12,7 @@
       "command": "podman",
       "args": [
         "run", "--rm", "-i",
-        "ghcr.io/gemaraproj/gemara-mcp@sha256:be39e5758f742145b6ee645257f444c72644b0a54dabea2a96ec27756ecad743",
+        "ghcr.io/gemaraproj/gemara-mcp@sha256:b7575c9d230df8f074e3c939b38df17bd46db0f44cb01b308957206b4c97b6e3",
         "serve", "--mode", "advisory"
       ]
     }
