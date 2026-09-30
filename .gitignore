@@ -1,2 +1,11 @@
 # Local planning/design docs
 docs/superpowers/
+
+# lola install artifacts (generated from skills/, mcps.json, AGENTS.md)
+.lola/
+.lola-req
+.claude/skills/
+.cursor/
+.opencode/
+.github/skills/
+GEMINI.md

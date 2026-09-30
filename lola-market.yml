@@ -1,0 +1,20 @@
+name: "Gemara Marketplace"
+description: "Gemara security artifact authoring modules for AI assistants"
+version: "0.1.0"
+
+modules:
+  - name: "gemara-ai"
+    description: "Interactive wizards and MCP tools for authoring schema-valid Gemara threat catalogs, control catalogs, risk catalogs, policies, and mapping documents"
+    version: "0.2.0"
+    repository: "https://github.com/gemaraproj/gemara-ai.git"
+    tags:
+      - "security"
+      - "compliance"
+      - "gemara"
+      - "openssf"
+      - "threat-modeling"
+      - "control-catalog"
+      - "policy"
+      - "risk"
+      - "mcp"
+      - "all"
