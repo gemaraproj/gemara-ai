@@ -49,6 +49,27 @@ The skill automatically triages what artifact to build by:
 
 Every artifact produced is validated against the Gemara CUE schema before completion.
 
+## Installation with lola (agent-agnostic)
+
+[lola](https://github.com/LobsterTrap/lola) is a package manager that installs skills, MCP
+servers, and instructions into any supported AI assistant (Claude Code, Cursor, OpenCode,
+Gemini CLI, GitHub Copilot, OpenClaw) from a single source.
+
+Install lola, then add the module directly from this repository:
+
+```bash
+lola mod add https://github.com/gemaraproj/gemara-ai.git
+lola install gemara-ai -a claude-code
+```
+
+`-a` takes one assistant per invocation — repeat the `lola install` line for each of
+`claude-code`, `copilot-cli`, `copilot-vscode`, `cursor`, `gemini-cli`, `openclaw`,
+`opencode`. Omit `-a` to choose interactively. Add `-s user` for a user-scoped install
+instead of the current project.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md#lola-module-details) for marketplace registration,
+module layout, reproducible setup with `.lola-req`, and module verification.
+
 ## Local Development
 
 ### 1. Clone the repository
