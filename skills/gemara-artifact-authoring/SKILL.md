@@ -1,6 +1,6 @@
 ---
 name: gemara-artifact-authoring
-description: Use when creating, iterating on, or validating Gemara security artifacts (threat catalogs, control catalogs). Also use when the user has security documentation, threat models, or attack scenarios that could be structured as Layer 2 Gemara artifacts. For policies, risk catalogs, or mapping documents, use the dedicated gemara-policy, gemara-risk-catalog, or gemara-mapping-document skills instead.
+description: Use when creating, iterating on, validating, or migrating Gemara security artifacts (threat catalogs, control catalogs), including moving v0 artifacts to the v1 schema. Also use when the user has security documentation, threat models, or attack scenarios that could be structured as Layer 2 Gemara artifacts. For policies, risk catalogs, or mapping documents, use the dedicated gemara-policy, gemara-risk-catalog, or gemara-mapping-document skills instead.
 ---
 
 # Gemara Artifact Authoring
@@ -63,7 +63,7 @@ Recommendation priority:
 3. Both Layer 2 exist, no Layer 3 → recommend the `gemara-risk-catalog` or `gemara-policy` skill based on user context
 4. Two or more artifacts exist → recommend the `gemara-mapping-document` skill
 
-Present findings and recommendation, then ask which artifact to create. If the user chooses a Layer 3 artifact or MappingDocument, direct them to the corresponding standalone skill.
+Present findings and recommendation, then ask which artifact to create. If an existing ThreatCatalog or ControlCatalog has a v0 `gemara-version` (0.x), mention that the migration wizard can bring it to v1, but go straight to the artifact the user asked for when they named one. If the user chooses a Layer 3 artifact or MappingDocument, direct them to the corresponding standalone skill.
 
 ## Prerequisite Check
 
@@ -90,6 +90,7 @@ After the user confirms the artifact type, load and follow the corresponding wiz
 |--------------|-------------|----------------|
 | ThreatCatalog | threat-assessment-wizard.md | `#ThreatCatalog`, `#CapabilityCatalog` |
 | ControlCatalog | control-catalog-wizard.md | `#ControlCatalog` |
+| v0 ThreatCatalog or ControlCatalog to migrate | migration-wizard.md | `#ThreatCatalog`, `#CapabilityCatalog`, `#ControlCatalog` |
 
 For other artifact types, direct the user to the standalone skill:
 

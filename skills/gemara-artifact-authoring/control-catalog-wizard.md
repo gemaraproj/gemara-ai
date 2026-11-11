@@ -18,7 +18,12 @@ Goal: Produce a valid Gemara `#ControlCatalog` YAML artifact through interactive
 
 Execution steps:
 
-1. **Catalog Import** — Confirm which catalog the user wants as a mapping reference. The default suggestion (FINOS CCC Core) was already presented.
+1. **Catalog Import** — Explain how to respond at each step: reply "yes" to accept a proposal as shown, reply with letters to select specific items (e.g., "a, c"), give a letter and a change to modify an item (e.g., "b: update remarks to 'mitigates lateral movement'"), or reply "no" or "skip". Then suggest the FINOS CCC Core catalog, which provides pre-built controls, families, and threat mappings the user can import rather than redefine:
+
+   - Catalog download: https://github.com/finos/common-cloud-controls/releases/download/v2025.10/CCC.Core_v2025.10.yaml
+   - Repository: https://github.com/finos/common-cloud-controls/releases
+
+   Ask the user to reply **yes** to use FINOS CCC, or provide an alternative catalog. Confirm which catalog they want as a mapping reference.
 
    - If the user provides a different artifact (URL, file path, or pasted content), run the artifact type identification procedure (see below) before proceeding.
    - The confirmed type determines the valid mapping target:
@@ -59,7 +64,7 @@ Execution steps:
    metadata:
      id: {ID_PREFIX from user}
      type: ControlCatalog
-     gemara-version: "v1.3.0"
+     gemara-version: "v1.6.0"
      description: {from user}
      version: 1.0.0
      author:
@@ -190,7 +195,7 @@ Execution steps:
 
      ```bash
      go install cuelang.org/go/cmd/cue@latest
-     cue vet -c -d '#ControlCatalog' github.com/gemaraproj/gemara@v1 controls.yaml
+     cue vet -c -d '#ControlCatalog' github.com/gemaraproj/gemara@v1.6.0 controls.yaml
      ```
 
 6. **Next Steps** — After validation succeeds:

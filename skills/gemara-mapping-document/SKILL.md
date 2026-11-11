@@ -108,7 +108,7 @@ Execution steps:
    metadata:
      id: {ID_PREFIX from user}
      type: MappingDocument
-     gemara-version: "v1.3.0"
+     gemara-version: "v1.6.0"
      description: {from user}
      version: 1.0.0
      author:
@@ -238,7 +238,7 @@ Execution steps:
 
      ```bash
      go install cuelang.org/go/cmd/cue@latest
-     cue vet -c -d '#MappingDocument' github.com/gemaraproj/gemara@v1 mapping.yaml
+     cue vet -c -d '#MappingDocument' github.com/gemaraproj/gemara@v1.6.0 mapping.yaml
      ```
 
 6. **Next Steps** — After validation succeeds:
@@ -259,18 +259,19 @@ Procedure:
 
 ## Version Check
 
-After the artifact type is confirmed as a Gemara artifact, check whether it uses the current schema version.
+After the artifact type is confirmed as a Gemara artifact, check whether it uses a v0 schema version. Migration only applies to v0 artifacts.
 
 Procedure:
 1. Inspect `metadata.gemara-version` in the artifact.
-2. If the version equals `"v1.3.0"`, the artifact is current — proceed normally.
-3. If the version is older (e.g., `"v1.0.0"`, `"0.20.0"`, `"0.1.0"`, or any value other than `"v1.3.0"`):
-   - Inform the user: *"This artifact uses gemara-version `{version}`, which is an older schema version. The current version is v1.3.0."*
-   - **If the artifact type is `ThreatCatalog` or `ControlCatalog`:** inform the user that automated migration is available — *"Automated migration to v1.3.0 is available via the **migration** prompt. Would you like to migrate this artifact first, or proceed with the older version as-is?"*
+2. If the major version is 1 or higher (e.g., `"v1.0.0"`, `"1.1.0"`, `"v1.3.0"`, `"v1.6.0"`), the artifact is already on the v1 schema — proceed normally. Do not offer migration.
+3. If the major version is 0 (e.g., `"0.20.0"`, `"0.1.0"`):
+   - Inform the user: *"This artifact uses gemara-version `{version}`, which is a v0 schema version."*
+   - **If the artifact type is `ThreatCatalog` or `ControlCatalog`:** inform the user that automated migration is available — *"Automated migration to v1 is available via the migration wizard in the `gemara-artifact-authoring` skill. Would you like to migrate this artifact first, or proceed with the v0 version as-is?"*
    - **If the artifact type is any other type** (e.g., `GuidanceCatalog`, `CapabilityCatalog`, `VectorCatalog`): warn that automated migration is not yet available — *"Automated migration is not currently available for {type} artifacts. You can still use this artifact as-is in the mapping document."*
-   - **If the user chooses to migrate:** direct them to use the `migration` prompt separately with this artifact, then return to the mapping document wizard with the migrated output. Do not attempt to run the migration inline.
+   - **If the user chooses to migrate:** direct them to run the migration wizard in the `gemara-artifact-authoring` skill separately with this artifact, then return to the mapping document wizard with the migrated output. Do not attempt to run the migration inline.
    - **If the user declines migration or migration is unavailable:** proceed with the v0 artifact. Record its actual `gemara-version` value in the `mapping-references` entry's `version` field.
-4. Regardless of whether the source or target artifacts are v0 or v1, the mapping document's own `metadata.gemara-version` is always `"v1.3.0"`.
+4. If `metadata.gemara-version` is missing or has no recognizable major version, ask the user which schema version the artifact targets, then apply the matching rule above.
+5. Regardless of whether the source or target artifacts are v0 or v1, the mapping document's own `metadata.gemara-version` is always `"v1.6.0"`.
 
 ## Mapping Document Constraints
 
@@ -281,5 +282,5 @@ Procedure:
 - The `strength` field, when present, must be an integer between 1 and 10 inclusive.
 - The `confidence-level` field, when present, must be one of: `Undetermined`, `Low`, `Medium`, `High`.
 - The `source-reference` and `target-reference` `reference-id` values must each match an entry in `mapping-references`.
-- The mapping document's `metadata.gemara-version` is always `"v1.3.0"`, regardless of the schema versions of the source or target artifacts. The `mapping-references` entries record each referenced artifact's actual version.
+- The mapping document's `metadata.gemara-version` is always `"v1.6.0"`, regardless of the schema versions of the source or target artifacts. The `mapping-references` entries record each referenced artifact's actual version.
 - Do not generate or suggest shell commands other than the `cue vet` command in step 5.

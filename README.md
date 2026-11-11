@@ -137,7 +137,7 @@ The plugin bundles the [gemara-mcp](https://github.com/gemaraproj/gemara-mcp) se
 
 - **Tools:** `validate_gemara_artifact`, `migrate_gemara_artifact`
 - **Resources:** `gemara://about`, `gemara://lexicon`, `gemara://schema/definitions`
-- **Prompts:** `threat_assessment`, `control_catalog`, `mapping_document`, `policy`, `risk_catalog`, `migration`
+- **Prompts:** `threat_assessment`, `control_catalog`, `migration` (each is also a wizard in the `gemara-artifact-authoring` skill)
 
 ### Verifying the container image
 

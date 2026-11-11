@@ -95,7 +95,7 @@ Execution steps:
    metadata:
      id: {ID_PREFIX}
      type: Policy
-     gemara-version: "v1.3.0"
+     gemara-version: "v1.6.0"
      description: {from user}
      version: 1.0.0
      author:
@@ -407,7 +407,7 @@ Execution steps:
 
      ```bash
      go install cuelang.org/go/cmd/cue@latest
-     cue vet -c -d '#Policy' github.com/gemaraproj/gemara@v1 policy.yaml
+     cue vet -c -d '#Policy' github.com/gemaraproj/gemara@v1.6.0 policy.yaml
      ```
 
 10. **Next Steps** — After validation succeeds:
