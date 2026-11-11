@@ -25,11 +25,12 @@ Execution steps:
 
    - If the user provides a URL, fetch the content and verify that it is expressed in YAML.
    - Check for `metadata.type` and `metadata.gemara-version` in the YAML.
+   - **If metadata.gemara-version has a major version of 1 or higher** (e.g. `"v1.0.0"`, `"1.1.0"`, `"v1.6.0"`): tell the user the artifact is already on the v1 schema and needs no migration, and stop. `migrate_gemara_artifact` transforms v0 artifacts only; running it on v1 input damages the artifact.
    - **If metadata is complete:** confirm the artifact type and version, then proceed.
    - **If metadata.type is missing:** infer the type from the document structure:
      - `threats:` key → ThreatCatalog
      - `controls:` key → ControlCatalog
-   - **If metadata.gemara-version is missing:** ask the user which v0 version this artifact targets, or default to `"0.20.0"` if unknown.
+   - **If metadata.gemara-version is missing:** ask the user which schema version this artifact targets, or default to `"0.20.0"` if unknown. If they say v1 or later, stop as above.
    - Present your inference to the user for confirmation before proceeding.
    - `migrate_gemara_artifact` supports ThreatCatalog and ControlCatalog only. For any other type (e.g. GuidanceCatalog), tell the user automated migration isn't available for it yet and stop.
 
@@ -80,10 +81,11 @@ Execution steps:
 
 5. **Next Steps** — After approval:
    1. Save the migrated artifacts to the appropriate files.
-   2. Validate locally against the v1 schema:
+   2. Validate locally against the v1 schema, running the line for each artifact you saved:
       ```bash
       go install cuelang.org/go/cmd/cue@latest
       cue vet -c -d '#ThreatCatalog' github.com/gemaraproj/gemara@v1.6.0 threats.yaml
+      cue vet -c -d '#ControlCatalog' github.com/gemaraproj/gemara@v1.6.0 controls.yaml
       cue vet -c -d '#CapabilityCatalog' github.com/gemaraproj/gemara@v1.6.0 capabilities.yaml
       ```
    3. **Commit** the migrated artifacts for CI validation.
@@ -107,4 +109,4 @@ Execution steps:
 - Do not modify capability IDs, threat IDs, or control IDs during migration — ID stability is critical for downstream references.
 - Do not alter `threats[].capabilities` reference mappings — these still work via imported capability IDs.
 - If the source artifact has validation errors in v0, migrate it as-is and flag the issues for the user to fix in v1.
-- Do not generate or suggest shell commands other than the `cue vet` command above.
+- Do not generate or suggest shell commands other than the `cue vet` commands above.
